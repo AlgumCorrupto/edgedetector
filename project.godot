@@ -1,0 +1,67 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="edgecolorer"
+run/main_scene="uid://bc7bsbba7iqg1"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://bdurc4wh1axai"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+
+[shader_globals]
+
+threshold_low={
+"type": "float",
+"value": 0.0
+}
+threshold_high={
+"type": "float",
+"value": 1.0
+}
+use_adaptive_threshold={
+"type": "bool",
+"value": false
+}
+window_size={
+"type": "int",
+"value": 4
+}
+blur_kernel_size={
+"type": "int",
+"value": 0
+}
+blur_sigma={
+"type": "float",
+"value": 0.0
+}
+use_blur={
+"type": "bool",
+"value": false
+}

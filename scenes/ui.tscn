@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://bc7bsbba7iqg1"]
+
+[ext_resource type="PackedScene" uid="uid://4duhw1uoukxy" path="res://scenes/preview.tscn" id="1_nt7q6"]
+
+[sub_resource type="GDScript" id="GDScript_rnqlc"]
+script/source = "extends Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	get_viewport().files_dropped.connect(_on_file_dropped)
+
+func _on_file_dropped(files: PackedStringArray):
+	Global.change_image(files[0])
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_nt7q6"]
+font_size = 32
+outline_size = 1
+
+[sub_resource type="GDScript" id="GDScript_ndegf"]
+script/source = "extends OptionButton
+
+func _ready() -> void:
+	item_selected.connect(_item_selected)
+
+func _item_selected(index: int):
+	Global.change_shader(index)
+"
+
+[sub_resource type="GDScript" id="GDScript_pdbet"]
+script/source = "extends HSlider
+
+func _ready() -> void:
+	value_changed.connect(_value_changed)
+	
+func _value_changed(value: float):
+	#var t = value * value
+	var t = value
+	RenderingServer.global_shader_parameter_set(\"threshold_low\", t)
+"
+
+[sub_resource type="GDScript" id="GDScript_nt7q6"]
+script/source = "extends HSlider
+
+func _ready() -> void:
+	value_changed.connect(_value_changed)
+	
+func _value_changed(value: float):
+	var t = value * value
+	RenderingServer.global_shader_parameter_set(\"threshold_high\", t)
+"
+
+[sub_resource type="GDScript" id="GDScript_7n4c2"]
+script/source = "extends CheckBox
+
+
+func _ready() -> void:
+	toggled.connect(_on_toggled)
+
+
+func _on_toggled(toggled_on: bool):
+	RenderingServer.global_shader_parameter_set(\"use_adaptive_threshold\", toggled_on);
+"
+
+[sub_resource type="GDScript" id="GDScript_84vcc"]
+script/source = "extends HSlider
+
+func _ready() -> void:
+	value_changed.connect(_on_val_changed)
+
+func _on_val_changed(og: float):
+	var value := int(og)
+	RenderingServer.global_shader_parameter_set(\"window_size\", value)
+"
+
+[node name="Control" type="Control" unique_id=136033091]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_rnqlc")
+
+[node name="Control" type="HSplitContainer" parent="." unique_id=144545655]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offsets = PackedInt32Array(-203)
+split_offset = -203
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=497319860]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=930030538]
+handle_input_locally = false
+size = Vector2i(795, 644)
+render_target_update_mode = 4
+
+[node name="preview" parent="Control/SubViewportContainer/SubViewport" unique_id=1740398655 instance=ExtResource("1_nt7q6")]
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=598989037]
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=2134673181]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=1135970937]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=232753486]
+layout_mode = 2
+text = "Opções"
+label_settings = SubResource("LabelSettings_nt7q6")
+
+[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=352580784]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1730438127]
+layout_mode = 2
+columns = 2
+
+[node name="STLabel" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1839873551]
+layout_mode = 2
+text = "Shader atual
+"
+
+[node name="STValue" type="OptionButton" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=382973725]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+selected = 0
+allow_reselect = true
+item_count = 4
+popup/item_0/text = "Nenhum"
+popup/item_0/id = 0
+popup/item_1/text = "Gradiente"
+popup/item_1/id = 1
+popup/item_2/text = "Crisp"
+popup/item_2/id = 2
+popup/item_3/text = "Fuzzy"
+popup/item_3/id = 3
+script = SubResource("GDScript_ndegf")
+
+[node name="THLabel" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1026536372]
+layout_mode = 2
+text = "Threshold Small"
+
+[node name="THValue" type="HSlider" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=894081873]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+max_value = 1.1
+step = 0.01
+value = 0.9
+script = SubResource("GDScript_pdbet")
+
+[node name="THLabel2" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1211840340]
+layout_mode = 2
+text = "Threshold High"
+
+[node name="THValue2" type="HSlider" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1167390822]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+max_value = 1.1
+step = 0.01
+value = 0.9
+script = SubResource("GDScript_nt7q6")
+
+[node name="CheckBox" type="CheckBox" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1220700778]
+layout_mode = 2
+text = "Usar threshold adaptativo"
+script = SubResource("GDScript_7n4c2")
+
+[node name="Control" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1694727547]
+layout_mode = 2
+
+[node name="WSLabel" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=723909642]
+layout_mode = 2
+text = "Tamanho da Janela"
+
+[node name="WSValue" type="HSlider" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=972825503]
+layout_mode = 2
+max_value = 10.0
+value = 4.0
+script = SubResource("GDScript_84vcc")
