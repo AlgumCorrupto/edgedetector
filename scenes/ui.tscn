@@ -74,6 +74,7 @@ func _on_val_changed(og: float):
 "
 
 [node name="Control" type="Control" unique_id=136033091]
+propagate_maximum_size = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,11 +83,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_rnqlc")
 
-[node name="Control" type="HSplitContainer" parent="." unique_id=144545655]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Splitter" type="HSplitContainer" parent="." unique_id=144545655]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -94,46 +95,45 @@ size_flags_vertical = 3
 split_offsets = PackedInt32Array(-203)
 split_offset = -203
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=497319860]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Splitter" unique_id=497319860]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=930030538]
+[node name="SubViewport" type="SubViewport" parent="Splitter/SubViewportContainer" unique_id=930030538]
 handle_input_locally = false
-size = Vector2i(795, 644)
+size = Vector2i(795, 648)
 render_target_update_mode = 4
 
-[node name="preview" parent="Control/SubViewportContainer/SubViewport" unique_id=1740398655 instance=ExtResource("1_nt7q6")]
+[node name="preview" parent="Splitter/SubViewportContainer/SubViewport" unique_id=1740398655 instance=ExtResource("1_nt7q6")]
 
-[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=598989037]
-propagate_maximum_size = false
+[node name="PanelContainer" type="PanelContainer" parent="Splitter" unique_id=598989037]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=2134673181]
+[node name="MarginContainer" type="MarginContainer" parent="Splitter/PanelContainer" unique_id=2134673181]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=1135970937]
+[node name="VBoxContainer" type="VBoxContainer" parent="Splitter/PanelContainer/MarginContainer" unique_id=1135970937]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=232753486]
+[node name="Label" type="Label" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer" unique_id=232753486]
 layout_mode = 2
 text = "Opções"
 label_settings = SubResource("LabelSettings_nt7q6")
 
-[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=352580784]
+[node name="HSeparator" type="HSeparator" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer" unique_id=352580784]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1730438127]
+[node name="GridContainer" type="GridContainer" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer" unique_id=1730438127]
 layout_mode = 2
 columns = 2
 
-[node name="STLabel" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1839873551]
+[node name="STLabel" type="Label" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1839873551]
 layout_mode = 2
 text = "Shader atual
 "
 
-[node name="STValue" type="OptionButton" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=382973725]
+[node name="STValue" type="OptionButton" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=382973725]
 propagate_maximum_size = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -151,11 +151,11 @@ popup/item_3/text = "Fuzzy"
 popup/item_3/id = 3
 script = SubResource("GDScript_ndegf")
 
-[node name="THLabel" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1026536372]
+[node name="THLabel" type="Label" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1026536372]
 layout_mode = 2
 text = "Threshold Small"
 
-[node name="THValue" type="HSlider" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=894081873]
+[node name="THValue" type="HSlider" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=894081873]
 propagate_maximum_size = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -165,11 +165,11 @@ step = 0.01
 value = 0.9
 script = SubResource("GDScript_pdbet")
 
-[node name="THLabel2" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1211840340]
+[node name="THLabel2" type="Label" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1211840340]
 layout_mode = 2
 text = "Threshold High"
 
-[node name="THValue2" type="HSlider" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1167390822]
+[node name="THValue2" type="HSlider" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1167390822]
 propagate_maximum_size = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -179,19 +179,19 @@ step = 0.01
 value = 0.9
 script = SubResource("GDScript_nt7q6")
 
-[node name="CheckBox" type="CheckBox" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1220700778]
+[node name="CheckBox" type="CheckBox" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1220700778]
 layout_mode = 2
 text = "Usar threshold adaptativo"
 script = SubResource("GDScript_7n4c2")
 
-[node name="Control" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1694727547]
+[node name="Control" type="Control" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1694727547]
 layout_mode = 2
 
-[node name="WSLabel" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=723909642]
+[node name="WSLabel" type="Label" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=723909642]
 layout_mode = 2
 text = "Tamanho da Janela"
 
-[node name="WSValue" type="HSlider" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=972825503]
+[node name="WSValue" type="HSlider" parent="Splitter/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=972825503]
 layout_mode = 2
 max_value = 10.0
 value = 4.0

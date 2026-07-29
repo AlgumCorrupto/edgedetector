@@ -14,7 +14,7 @@ enum input_types {IMAGE, CAMERA}
 var current_input := input_types.IMAGE
 signal input_type_changed(inp: input_types)
 
-var current_image : Texture2D = load("res://icon.svg")
+var current_image : Texture2D = load("res://test.png")
 signal image_changed(image: Texture2D)
 
 
@@ -32,7 +32,7 @@ func change_image(path: String) -> void:
 		current_image = ImageTexture.create_from_image(image)
 		image_changed.emit(current_image)
 	else:
-		image_changed.emit(load("res://icon.svg"))
+		image_changed.emit(load("res://test.png"))
 		
 		
 		

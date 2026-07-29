@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://4duhw1uoukxy"]
 
-[ext_resource type="Texture2D" uid="uid://cu0db07amklah" path="res://icon.svg" id="1_pw63i"]
 [ext_resource type="Material" uid="uid://b4m0180aitktx" path="res://materials/preview.tres" id="1_virtx"]
 [ext_resource type="Script" uid="uid://cpvblu7c3m1ji" path="res://scripts/preview_image.gd" id="2_7ykc4"]
+[ext_resource type="Texture2D" uid="uid://bleaeo0veef2o" path="res://test.png" id="2_virtx"]
 
 [node name="preview" type="Node2D" unique_id=1740398655]
 
 [node name="input" type="Sprite2D" parent="." unique_id=1109391891]
 material = ExtResource("1_virtx")
-texture = ExtResource("1_pw63i")
+texture = ExtResource("2_virtx")
 script = ExtResource("2_7ykc4")
 
 [node name="camera" type="Camera2D" parent="." unique_id=270395311]
